@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hostel Attendance Dashboard</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+    }
+
+    header {
+        background: #1e90ff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .welcome {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .time {
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .card p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #888;
+        font-size: 13px;
+    }
+</style>
+
+</head>
+<body>
+
+<header>
+    🏨 Hostel Attendance System
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        Welcome, <b id="username">Student</b> 👋
+    </div>
+
+    <div class="time" id="datetime"></div>
+
+    <div class="cards">
+
+        <div class="card" onclick="markAttendance()">
+            <h3>✅ Mark Attendance</h3>
+            <p>Submit today’s attendance</p>
+        </div>
+
+        <div class="card" onclick="viewAttendance()">
+            <h3>📊 View Attendance</h3>
+            <p>Check your attendance record</p>
+        </div>
+
+        <div class="card" onclick="scanQR()">
+            <h3>📷 Scan QR</h3>
+            <p>Scan hostel QR code</p>
+        </div>
+
+        <div class="card" onclick="logout()">
+            <h3>🚪 Logout</h3>
+            <p>Exit from system</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Hostel Management System
+</footer>
+
+<script>
+    // Show date & time
+    function updateTime() {
+        const now = new Date();
+        document.getElementById("datetime").innerHTML =
+            now.toDateString() + " | " + now.toLocaleTimeString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Button functions
+    function markAttendance() {
+        alert("Attendance marked successfully ✅");
+    }
+
+    function viewAttendance() {
+        alert("Attendance report will be shown here 📊");
+    }
+
+    function scanQR() {
+        alert("QR Scanner will open here 📷");
+    }
+
+    function logout() {
+        alert("Logged out successfully 🚪");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>
