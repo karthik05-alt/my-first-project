@@ -3,7 +3,11 @@
 <head>
 <title>Student Dashboard</title>
 <style>
-body { font-family: Arial; background:#f4f6f8; padding:20px; }
+body {
+    font-family: Arial;
+    background:#f4f6f8;
+    padding:20px;
+}
 .card {
     background:white;
     padding:20px;
@@ -16,6 +20,7 @@ button {
     color:white;
     border:none;
     border-radius:6px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -25,26 +30,44 @@ button {
 <h2>👋 Welcome Student</h2>
 <p>PLF No: <b id="sid"></b></p>
 
+<button onclick="logout()">Logout</button>
+
 <div class="card">
-    <h3>🍪 Snack Token (Today Only)</h3>
-    <button onclick="generateQR('snack')">Generate QR</button>
+    <h3>🍪 Snack Token (Once Per Day)</h3>
+    <button onclick="generateQR('snack')">Generate Snack QR</button>
 </div>
 
 <div class="card">
     <h3>🥚 Egg Token (Daily)</h3>
-    <button onclick="generateQR('egg')">Generate QR</button>
+    <button onclick="generateQR('egg')">Generate Egg QR</button>
 </div>
 
 <script>
-let role = localStorage.getItem("role");
-if(role !== "student") location.href="login.html";
+if(localStorage.getItem("role") !== "student")
+    location.href = "login.html";
 
 document.getElementById("sid").innerText =
     localStorage.getItem("userid");
 
 function generateQR(type){
+    let today = new Date().toLocaleDateString();
+    let lastSnackDate = localStorage.getItem("snackDate");
+
+    if(type === "snack"){
+        if(lastSnackDate === today){
+            alert("❌ Snack already taken today");
+            return;
+        }
+        localStorage.setItem("snackDate", today);
+    }
+
     localStorage.setItem("tokenType", type);
-    window.location.href="qr.html";
+    window.location.href = "qr.html";
+}
+
+function logout(){
+    localStorage.clear();
+    window.location.href = "login.html";
 }
 </script>
 
