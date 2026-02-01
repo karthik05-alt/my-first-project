@@ -55,13 +55,13 @@ function login() {
     if (role === "student" && id === "24C247") {
         localStorage.setItem("role", "student");
         localStorage.setItem("userid", id);
-        window.location.href = "student-dashboard.html";
+        window.location.href = "dashboard.html";
     }
     // ADMIN LOGIN
     else if (role === "admin" && id === "12345") {
         localStorage.setItem("role", "admin");
         localStorage.setItem("userid", id);
-        window.location.href = "admin-dashboard.html";
+        window.location.href = "admindash.html";
     }
     // WRONG LOGIN
     else {
@@ -71,3 +71,4 @@ function login() {
 </script>
 </body>
 </html>
+
