@@ -143,6 +143,17 @@
         alert("Logged out successfully 🚪");
         window.location.href = "login.html";
     }
+    <script>
+    // Show student register number
+    const regno = localStorage.getItem("regno");
+
+    if (!regno) {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("username").innerText = regno;
+</script>
+
 </script>
 
 </body>
