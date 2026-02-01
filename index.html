@@ -50,21 +50,20 @@ body {
 <div class="login-box">
     <h2>🏨 Hostel Attendance</h2>
 
-    <input type="text" placeholder="PLF Number">
-    <input type="text" placeholder="Date of Birth">
+    <input type="text" value="24C247" readonly>
+    <input type="text" value="2006-09-05" readonly>
 
+    <!-- IMPORTANT: type="button" -->
     <button type="button" onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
-    console.log("Login clicked");
-
-    // Fixed values
+    // Store fixed PLF number
     localStorage.setItem("plfno", "24C247");
 
-    // Redirect
-    window.location.href = "./dashboard.html";
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
 }
 </script>
 
