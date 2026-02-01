@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR Token</title>
+<style>
+body {
+    font-family: Arial;
+    text-align:center;
+    padding:40px;
+}
+.qr {
+    padding:20px;
+    border:2px dashed #333;
+    display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📲 Show This QR to Mess Staff</h2>
+
+<div class="qr">
+    <p><b>ID:</b> <span id="id"></span></p>
+    <p><b>Token:</b> <span id="token"></span></p>
+    <p><b>Date:</b> <span id="date"></span></p>
+</div>
+
+<script>
+document.getElementById("id").innerText =
+    localStorage.getItem("userid");
+
+document.getElementById("token").innerText =
+    localStorage.getItem("tokenType");
+
+document.getElementById("date").innerText =
+    new Date().toLocaleDateString();
+</script>
+
+</body>
+</html>
