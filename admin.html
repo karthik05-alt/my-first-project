@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mess Admin - Snack Control</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px;
+    width: 100%;
+    background: green;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.qr-box {
+    margin-top: 15px;
+    padding: 15px;
+    border: 2px dashed green;
+    text-align: center;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🍽️ Mess Admin Panel</h2>
+
+<!-- ADMIN QR GENERATION -->
+<div class="card">
+    <h3>Generate Today’s Snack QR</h3>
+    <button onclick="generateAdminQR()">Generate Admin QR</button>
+
+    <div class="qr-box" id="adminQR" style="display:none;"></div>
+</div>
+
+<!-- STUDENT TOKEN SCAN -->
+<div class="card">
+    <h3>Scan Student Snack Token</h3>
+    <input type="text" id="studentToken" placeholder="Paste student snack token">
+    <button onclick="verifySnack()">Verify & Give Snack</button>
+</div>
+
+<script>
+let today = new Date().toDateString();
+let adminKey = "ADMIN_QR_" + today;
+
+function generateAdminQR() {
+    const adminQR = "ADMIN-SNACK-" + today;
+    localStorage.setItem(adminKey, adminQR);
+
+    document.getElementById("adminQR").innerText = adminQR;
+    document.getElementById("adminQR").style.display = "block";
+}
+
+// Verify student token
+function verifySnack() {
+    const adminQR = localStorage.getItem(adminKey);
+    const studentToken = document.getElementById("studentToken").value;
+
+    if (!adminQR) {
+        alert("Admin QR not generated ❌");
+        return;
+    }
+
+    if (!studentToken.startsWith("SNACK-")) {
+        alert("Invalid student token ❌");
+        return;
+    }
+
+    const parts = studentToken.split("-");
+    const plfno = parts[1];
+    const studentKey = plfno + "_snack_" + today;
+
+    const storedToken = localStorage.getItem(studentKey);
+
+    if (storedToken === studentToken) {
+        localStorage.setItem(studentKey, "USED");
+        alert("Snack Issued Successfully ✅");
+    } else {
+        alert("Snack already taken or token invalid ❌");
+    }
+}
+</script>
+
+</body>
+</html>
