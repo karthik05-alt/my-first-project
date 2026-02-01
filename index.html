@@ -56,6 +56,12 @@ function login() {
         localStorage.setItem("userid",id);
         window.location.href = "dashboard.html";
     }
+    
+    else if (role === "student" && id === "24C117") {
+        localStorage.setItem("role","student");
+        localStorage.setItem("userid",id);
+        window.location.href = "dashboard.html";
+    }    
     else if (role === "admin" && id === "12345") {
         localStorage.setItem("role","admin");
         localStorage.setItem("userid",id);
@@ -68,3 +74,4 @@ function login() {
 </script>
 </body>
 </html>
+
