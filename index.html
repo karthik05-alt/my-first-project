@@ -1,71 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Hostel Attendance Login</title>
-
+<title>Hostel Token Login</title>
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #1e90ff, #00b894);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: Arial;
+    background: linear-gradient(120deg,#1e90ff,#00b894);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
-
-.login-box {
-    background: white;
-    padding: 30px;
-    width: 350px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    text-align: center;
+.box {
+    background:white;
+    padding:30px;
+    width:320px;
+    border-radius:12px;
+    text-align:center;
 }
-
-.login-box input {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+input,select,button {
+    width:100%;
+    padding:12px;
+    margin:10px 0;
 }
-
-.login-box button {
-    width: 100%;
-    padding: 12px;
-    background: #1e90ff;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+button {
+    background:#1e90ff;
+    color:white;
+    border:none;
+    border-radius:6px;
 }
 </style>
 </head>
 
 <body>
+<div class="box">
+    <h2>🏨 Hostel Login</h2>
 
-<div class="login-box">
-    <h2>🏨 Hostel Attendance</h2>
+    <select id="role">
+        <option value="student">Student</option>
+        <option value="admin">Mess Admin</option>
+    </select>
 
-    <input type="text" value="24C247" readonly>
-    <input type="text" value="2006-09-05" readonly>
+    <input type="text" id="userid" placeholder="Enter ID">
 
-    <!-- IMPORTANT: type="button" -->
-    <button type="button" onclick="login()">Login</button>
+    <button onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
-    // Store fixed PLF number
-    localStorage.setItem("plfno", "24C247");
+    let role = document.getElementById("role").value;
+    let id = document.getElementById("userid").value;
 
-    // Redirect to dashboard
-    window.location.href = "dashboard.html";
+    if(id === "") {
+        alert("Enter ID");
+        return;
+    }
+
+    localStorage.setItem("role", role);
+    localStorage.setItem("userid", id);
+
+    if(role === "student")
+        window.location.href = "student-dashboard.html";
+    else
+        window.location.href = "admin-dashboard.html";
 }
 </script>
-
 </body>
 </html>
