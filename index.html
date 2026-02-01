@@ -51,18 +51,22 @@ function login() {
     let role = document.getElementById("role").value;
     let id = document.getElementById("userid").value;
 
-    if(id === "") {
-        alert("Enter ID");
-        return;
-    }
-
-    localStorage.setItem("role", role);
-    localStorage.setItem("userid", id);
-
-    if(role === "student")
+    // STUDENT LOGIN
+    if (role === "student" && id === "24C247") {
+        localStorage.setItem("role", "student");
+        localStorage.setItem("userid", id);
         window.location.href = "student-dashboard.html";
-    else
+    }
+    // ADMIN LOGIN
+    else if (role === "admin" && id === "12345") {
+        localStorage.setItem("role", "admin");
+        localStorage.setItem("userid", id);
         window.location.href = "admin-dashboard.html";
+    }
+    // WRONG LOGIN
+    else {
+        alert("❌ Invalid ID for selected role");
+    }
 }
 </script>
 </body>
