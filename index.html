@@ -24,10 +24,6 @@ body {
     text-align: center;
 }
 
-.login-box h2 {
-    margin-bottom: 15px;
-}
-
 .login-box input {
     width: 100%;
     padding: 12px;
@@ -54,25 +50,21 @@ body {
 <div class="login-box">
     <h2>🏨 Hostel Attendance</h2>
 
-    <!-- Display only -->
     <input type="text" placeholder="PLF Number">
-    <input type="text" placeholder="Date of Birth (YYYY-MM-DD)">
+    <input type="text" placeholder="Date of Birth">
 
-    <button onclick="login()">Login</button>
+    <button type="button" onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
+    console.log("Login clicked");
+
     // Fixed values
-    const plfno = "24C247";
-    const dob = "2006-09-05";
+    localStorage.setItem("plfno", "24C247");
 
-    // Store in browser
-    localStorage.setItem("plfno", plfno);
-    localStorage.setItem("dob", dob);
-
-    // Redirect to dashboard
-    window.location.href = "dashboard.html";
+    // Redirect
+    window.location.href = "./dashboard.html";
 }
 </script>
 
