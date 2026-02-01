@@ -25,39 +25,6 @@ header {
 
 .welcome {
     font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.time {
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-footer {
-    margin-top: 30px;
-    text-align: center;
-    color: #888;
-    font-size: 13px;
 }
 </style>
 </head>
@@ -69,79 +36,22 @@ footer {
 </header>
 
 <div class="container">
-
     <div class="welcome">
         Welcome, <b id="username"></b> 👋
     </div>
-
-    <div class="time" id="datetime"></div>
-
-    <div class="cards">
-
-        <div class="card" onclick="markAttendance()">
-            <h3>✅ Mark Attendance</h3>
-            <p>Submit today’s attendance</p>
-        </div>
-
-        <div class="card" onclick="viewAttendance()">
-            <h3>📊 View Attendance</h3>
-            <p>Check attendance record</p>
-        </div>
-
-        <div class="card" onclick="scanQR()">
-            <h3>📷 Scan QR</h3>
-            <p>Scan hostel QR</p>
-        </div>
-
-        <div class="card" onclick="logout()">
-            <h3>🚪 Logout</h3>
-            <p>Exit system</p>
-        </div>
-
-    </div>
-
 </div>
 
-<footer>
-    © 2026 Hostel Management System
-</footer>
-
 <script>
-    // Show PLF number
+    // Read PLF number
     const plfno = localStorage.getItem("plfno");
 
+    // Safety check
     if (!plfno) {
         window.location.href = "login.html";
     }
 
+    // Show welcome message
     document.getElementById("username").innerText = "PLF No: " + plfno;
-
-    // Date & time
-    function updateTime() {
-        const now = new Date();
-        document.getElementById("datetime").innerText =
-            now.toDateString() + " | " + now.toLocaleTimeString();
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
-
-    // Button actions
-    function markAttendance() {
-        alert("Attendance marked successfully ✅");
-    }
-
-    function viewAttendance() {
-        alert("Attendance details will be displayed 📊");
-    }
-
-    function scanQR() {
-        alert("QR Scanner will open 📷");
-    }
-
-    function logout() {
-        localStorage.clear();
-        window.location.href = "login.html";
-    }
 </script>
 
 </body>
