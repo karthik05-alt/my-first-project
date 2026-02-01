@@ -42,17 +42,17 @@ header {
 </div>
 
 <script>
-    // Read PLF number
     const plfno = localStorage.getItem("plfno");
+    console.log("PLF from storage:", plfno);
 
-    // Safety check
     if (!plfno) {
-        window.location.href = "login.html";
+        alert("No login data found. Redirecting...");
+        window.location.href = "./login.html";
     }
 
-    // Show welcome message
     document.getElementById("username").innerText = "PLF No: " + plfno;
 </script>
 
 </body>
 </html>
+
