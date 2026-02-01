@@ -54,31 +54,27 @@ body {
 <div class="login-box">
     <h2>🏨 Hostel Attendance</h2>
 
-    <!-- PLF Number -->
-    <input type="text" id="plfno" placeholder="PLF Number">
-
-    <!-- DOB as TEXT -->
-    <input type="text" id="dob" placeholder="Date of Birth (YYYY-MM-DD)">
+    <!-- Display only -->
+    <input type="text" placeholder="PLF Number">
+    <input type="text" placeholder="Date of Birth (YYYY-MM-DD)">
 
     <button onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
-    const plfno = document.getElementById("plfno").value.trim();
-    const dob = document.getElementById("dob").value.trim();
+    // Fixed values
+    const plfno = "24C247";
+    const dob = "2006-09-05";
 
-    if (plfno === "" || dob === "") {
-        alert("Please fill all fields ❗");
-        return;
-    }
+    // Store in browser
+    localStorage.setItem("plfno", plfno);
+    localStorage.setItem("dob", dob);
 
-    // Demo credentials
-    if (plfno === "PLF1001" && dob === "2004-05-15") {
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
+}
+</script>
 
-        // Save PLF number
-        localStorage.setItem("plfno", plfno);
-
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
-    } else
+</body>
+</html>
