@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mess Admin</title>
+<title>Mess Admin Dashboard</title>
 <style>
-body { font-family: Arial; padding:30px; background:#f4f6f8; }
+body {
+    font-family: Arial;
+    background:#f4f6f8;
+    padding:30px;
+}
 .box {
     background:white;
     padding:20px;
     border-radius:10px;
+}
+button {
+    padding:10px;
+    background:#1e90ff;
+    color:white;
+    border:none;
+    border-radius:6px;
 }
 </style>
 </head>
@@ -15,18 +26,26 @@ body { font-family: Arial; padding:30px; background:#f4f6f8; }
 <body>
 
 <h2>👨‍🍳 Mess Admin Panel</h2>
+
+<button onclick="logout()">Logout</button>
+
 <div class="box">
-    <p>Scan student QR and verify:</p>
+    <p>📌 Verify QR:</p>
     <ul>
-        <li>✔ Same Date</li>
-        <li>✔ Snack → Once per day</li>
-        <li>✔ Egg → Daily allowed</li>
+        <li>✔ Date should be today</li>
+        <li>✔ Snack → once per day</li>
+        <li>✔ Egg → allowed daily</li>
     </ul>
 </div>
 
 <script>
 if(localStorage.getItem("role") !== "admin")
-    location.href="login.html";
+    location.href = "login.html";
+
+function logout(){
+    localStorage.clear();
+    window.location.href = "login.html";
+}
 </script>
 
 </body>
