@@ -24,6 +24,10 @@ body {
     text-align: center;
 }
 
+.login-box h2 {
+    margin-bottom: 15px;
+}
+
 .login-box input {
     width: 100%;
     padding: 12px;
@@ -50,28 +54,30 @@ body {
 <div class="login-box">
     <h2>🏨 Hostel Attendance</h2>
 
-    <input type="text" id="regno" placeholder="Register Number">
-    <input type="password" id="password" placeholder="Password">
+    <!-- PLF Number -->
+    <input type="text" id="plfno" placeholder="PLF Number">
+
+    <!-- Date of Birth -->
+    <input type="date" id="dob">
 
     <button onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
-    const regno = document.getElementById("regno").value;
-    const password = document.getElementById("password").value;
+    const plfno = document.getElementById("plfno").value;
+    const dob = document.getElementById("dob").value;
 
     // Demo credentials
-    if (regno === "12345" && password === "admin") {
+    if (plfno === "PLF1001" && dob === "2004-05-15") {
 
-        // Store register number
-        localStorage.setItem("regno", regno);
+        // Store PLF number
+        localStorage.setItem("plfno", plfno);
 
         // Redirect to dashboard
         window.location.href = "dashboard.html";
-    } 
-    else {
-        alert("Invalid Register Number or Password ❌");
+    } else {
+        alert("Invalid PLF Number or Date of Birth ❌");
     }
 }
 </script>
