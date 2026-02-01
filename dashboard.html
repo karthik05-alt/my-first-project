@@ -43,11 +43,9 @@ header {
 
 <script>
     const plfno = localStorage.getItem("plfno");
-    console.log("PLF from storage:", plfno);
 
     if (!plfno) {
-        alert("No login data found. Redirecting...");
-        window.location.href = "./login.html";
+        window.location.href = "login.html";
     }
 
     document.getElementById("username").innerText = "PLF No: " + plfno;
@@ -55,4 +53,3 @@ header {
 
 </body>
 </html>
-
