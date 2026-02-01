@@ -57,34 +57,28 @@ body {
     <!-- PLF Number -->
     <input type="text" id="plfno" placeholder="PLF Number">
 
-    <!-- Date of Birth -->
-    <input type="date" id="dob">
+    <!-- DOB as TEXT -->
+    <input type="text" id="dob" placeholder="Date of Birth (YYYY-MM-DD)">
 
     <button onclick="login()">Login</button>
 </div>
 
 <script>
 function login() {
-    const plfno = document.getElementById("plfno").value;
-    const dob = document.getElementById("dob").value;
+    const plfno = document.getElementById("plfno").value.trim();
+    const dob = document.getElementById("dob").value.trim();
+
+    if (plfno === "" || dob === "") {
+        alert("Please fill all fields ❗");
+        return;
+    }
 
     // Demo credentials
-    if (plfno === "24C247" && dob === "05092006") {
+    if (plfno === "PLF1001" && dob === "2004-05-15") {
 
-        // Store PLF number
+        // Save PLF number
         localStorage.setItem("plfno", plfno);
 
         // Redirect to dashboard
         window.location.href = "dashboard.html";
-    } else {
-        alert("Invalid PLF Number or Date of Birth ❌");
-    }
-}
-</script>
-
-</body>
-</html>
-
-
-
-
+    } else
