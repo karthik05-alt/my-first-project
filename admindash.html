@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mess Admin</title>
+<style>
+body { font-family: Arial; padding:30px; background:#f4f6f8; }
+.box {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>👨‍🍳 Mess Admin Panel</h2>
+<div class="box">
+    <p>Scan student QR and verify:</p>
+    <ul>
+        <li>✔ Same Date</li>
+        <li>✔ Snack → Once per day</li>
+        <li>✔ Egg → Daily allowed</li>
+    </ul>
+</div>
+
+<script>
+if(localStorage.getItem("role") !== "admin")
+    location.href="login.html";
+</script>
+
+</body>
+</html>
