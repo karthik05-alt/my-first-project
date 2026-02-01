@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hostel Login</title>
+<title>Hostel Attendance Login</title>
 
 <style>
 body {
@@ -24,7 +24,7 @@ body {
     text-align: center;
 }
 
-input, select, button {
+.login-box input {
     width: 100%;
     padding: 12px;
     margin: 12px 0;
@@ -32,11 +32,40 @@ input, select, button {
     border: 1px solid #ccc;
 }
 
-button {
+.login-box button {
+    width: 100%;
+    padding: 12px;
     background: #1e90ff;
+    border: none;
+    border-radius: 8px;
     color: white;
     font-size: 16px;
-    border: none;
     cursor: pointer;
 }
-</styl
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>🏨 Hostel Attendance</h2>
+
+    <input type="text" value="24C247" readonly>
+    <input type="text" value="2006-09-05" readonly>
+
+    <!-- IMPORTANT: type="button" -->
+    <button type="button" onclick="login()">Login</button>
+</div>
+
+<script>
+function login() {
+    // Store fixed PLF number
+    localStorage.setItem("plfno", "24C247");
+
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
