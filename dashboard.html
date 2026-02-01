@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Hostel Attendance Dashboard</title>
-
+<title>Student Dashboard</title>
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
+body { font-family: Arial; background:#f4f6f8; padding:20px; }
+.card {
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:10px;
 }
-
-header {
-    background: #1e90ff;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 22px;
-}
-
-.container {
-    padding: 20px;
-}
-
-.welcome {
-    font-size: 20px;
+button {
+    padding:10px;
+    background:#1e90ff;
+    color:white;
+    border:none;
+    border-radius:6px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    🏨 Hostel Attendance System
-</header>
+<h2>👋 Welcome Student</h2>
+<p>PLF No: <b id="sid"></b></p>
 
-<div class="container">
-    <div class="welcome">
-        Welcome, <b id="username"></b> 👋
-    </div>
+<div class="card">
+    <h3>🍪 Snack Token (Today Only)</h3>
+    <button onclick="generateQR('snack')">Generate QR</button>
+</div>
+
+<div class="card">
+    <h3>🥚 Egg Token (Daily)</h3>
+    <button onclick="generateQR('egg')">Generate QR</button>
 </div>
 
 <script>
-    const plfno = localStorage.getItem("plfno");
+let role = localStorage.getItem("role");
+if(role !== "student") location.href="login.html";
 
-    if (!plfno) {
-        window.location.href = "login.html";
-    }
+document.getElementById("sid").innerText =
+    localStorage.getItem("userid");
 
-    document.getElementById("username").innerText = "PLF No: " + plfno;
+function generateQR(type){
+    localStorage.setItem("tokenType", type);
+    window.location.href="qr.html";
+}
 </script>
 
 </body>
