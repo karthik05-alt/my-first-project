@@ -2,39 +2,45 @@
 <html>
 <head>
 <title>QR Token</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 body {
     font-family: Arial;
     text-align:center;
     padding:40px;
 }
-.qr {
-    padding:20px;
-    border:2px dashed #333;
-    display:inline-block;
+#qrcode {
+    margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<h2>📲 Show This QR to Mess Staff</h2>
+<h2>📲 Show this QR to Mess Staff</h2>
 
-<div class="qr">
-    <p><b>ID:</b> <span id="id"></span></p>
-    <p><b>Token:</b> <span id="token"></span></p>
-    <p><b>Date:</b> <span id="date"></span></p>
-</div>
+<p><b>ID:</b> <span id="id"></span></p>
+<p><b>Token:</b> <span id="token"></span></p>
+<p><b>Date:</b> <span id="date"></span></p>
+
+<div id="qrcode"></div>
 
 <script>
-document.getElementById("id").innerText =
-    localStorage.getItem("userid");
+let id = localStorage.getItem("userid");
+let token = localStorage.getItem("tokenType");
+let date = new Date().toLocaleDateString();
 
-document.getElementById("token").innerText =
-    localStorage.getItem("tokenType");
+document.getElementById("id").innerText = id;
+document.getElementById("token").innerText = token;
+document.getElementById("date").innerText = date;
 
-document.getElementById("date").innerText =
-    new Date().toLocaleDateString();
+let qrData = `ID:${id} | Token:${token} | Date:${date}`;
+
+new QRCode(document.getElementById("qrcode"), {
+    text: qrData,
+    width: 200,
+    height: 200
+});
 </script>
 
 </body>
