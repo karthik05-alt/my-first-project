@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hostel Attendance Dashboard</title>
+<title>Hostel Snack Dashboard</title>
 
 <style>
 body {
@@ -25,6 +25,37 @@ header {
 
 .welcome {
     font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1e90ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: gray;
+}
+
+.qr-box {
+    margin-top: 15px;
+    padding: 15px;
+    border: 2px dashed #1e90ff;
+    text-align: center;
+    display: none;
 }
 </style>
 </head>
@@ -32,23 +63,57 @@ header {
 <body>
 
 <header>
-    🏨 Hostel Attendance System
+    🏨 Hostel Snack Token System
 </header>
 
 <div class="container">
+
     <div class="welcome">
         Welcome, <b id="username"></b> 👋
     </div>
+
+    <div class="card">
+        <h3>🍪 Snack Token</h3>
+        <p>Only one snack per day</p>
+
+        <button id="tokenBtn" onclick="generateToken()">Generate Snack Token</button>
+
+        <div class="qr-box" id="qrBox">
+            <p><b>Show this token to Mess Admin</b></p>
+            <div id="qrText"></div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-    const plfno = localStorage.getItem("plfno");
+const plfno = localStorage.getItem("plfno");
 
-    if (!plfno) {
-        window.location.href = "login.html";
-    }
+// If user opens dashboard directly
+if (!plfno) {
+    window.location.href = "index.html";
+}
 
-    document.getElementById("username").innerText = "PLF No: " + plfno;
+// Show welcome
+document.getElementById("username").innerText = "PLF No: " + plfno;
+
+const today = new Date().toDateString();
+const tokenKey = plfno + "_snack_" + today;
+
+// If snack already taken today
+if (localStorage.getItem(tokenKey) === "USED") {
+    document.getElementById("tokenBtn").disabled = true;
+    document.getElementById("tokenBtn").innerText = "Snack Already Taken Today";
+}
+
+function generateToken() {
+    const token = "SNACK-" + plfno + "-" + Date.now();
+
+    localStorage.setItem(tokenKey, token);
+
+    document.getElementById("qrText").innerText = token;
+    document.getElementById("qrBox").style.display = "block";
+}
 </script>
 
 </body>
